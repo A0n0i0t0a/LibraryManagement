@@ -1,0 +1,30 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class deleteDemo {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection con;
+		Statement stmt;
+		ResultSet rs = null;
+		int cnt = 0;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://,localhost:3307/library", "root", "root");
+			String str = "delete from Books where b_isbn_no=1002";
+			stmt = con.createStatement();
+			int rowcount = stmt.executeUpdate(str);
+			if (rowcount > 0) 
+			{
+				// System.out.println("RECORD INSERTED SUCESSFULLY");
+				System.out.println("RECORD DELETED SUCESSFULLY");
+			}
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+	}
+}
